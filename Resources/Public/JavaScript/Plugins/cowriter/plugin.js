@@ -1,5 +1,5 @@
 CKEDITOR.dialog.add("cowriterDialog", function(editor) {
-  let select_model = "text-davinci-003", select_temperature = 0.5, select_max_tokens = 4e3, select_amount = 1;
+  let select_model = "gpt-3.5-turbo-instruct", select_temperature = 0.5, select_max_tokens = 4e3, select_amount = 1;
   const escapeHtml = (unsafe) => {
     return unsafe.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;").replaceAll("'", "&#039;");
   };
@@ -35,7 +35,7 @@ CKEDITOR.dialog.add("cowriterDialog", function(editor) {
                 max_tokens: select_max_tokens,
                 // 1 to 4000
                 model: select_model,
-                // 'text-davinci-003', 'text-curie-001', 'text-babbage-001', 'text-ada-001'
+                // 'gpt-3.5-turbo-instruct', 'gpt-3.5-turbo', 'text-babbage-001', 'text-ada-001'
                 temperature: select_temperature,
                 // 0.0 is equivalent to greedy sampling
                 top_p: 1,
@@ -77,10 +77,10 @@ CKEDITOR.dialog.add("cowriterDialog", function(editor) {
             id: "model",
             title: editor.lang.cowriter.modelSelction,
             label: editor.lang.cowriter.modelSelctionLabel,
-            default: "text-davinci-003",
+            default: "gpt-3.5-turbo-instruct",
             items: [
-              ["Davinci", "text-davinci-003"],
-              ["Curie", "text-curie-001"],
+              ["Davinci", "gpt-3.5-turbo-instruct"],
+              ["Curie", "gpt-3.5-turbo"],
               ["Babbage", "text-babbage-001"],
               ["Ada", "text-ada-001"]
             ],
@@ -142,10 +142,10 @@ CKEDITOR.dialog.add("cowriterDialog", function(editor) {
       select_temperature = parseFloat(dialog.getValueOf("tab-advanced", "temperature"));
       select_amount = parseInt(dialog.getValueOf("tab-advanced", "amount"));
       switch (select_model) {
-        case "text-davinci-003":
+        case "gpt-3.5-turbo-instruct":
           select_max_tokens = 4e3;
           break;
-        case "text-curie-001":
+        case "gpt-3.5-turbo":
           select_max_tokens = 2e3;
           break;
         case "text-babbage-001":
